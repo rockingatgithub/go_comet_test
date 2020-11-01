@@ -3,46 +3,56 @@ import { Button, Row, Col, Dropdown, DropdownButton } from "react-bootstrap";
 
 function TopBar1(props) {
   return (
-    <Row>
-      <Col lg={2}>
+    <Row id="second-row">
+      <Col lg={3}>
         <div>
           <img
             alt="icon"
             src="https://www.flaticon.com/svg/static/icons/svg/876/876207.svg"
-            style={{ width: "20px", height: "20px" }}
+            className="topbarone-icon-ham"
           />
         </div>
       </Col>
-      <Col lg={8}>
+      <Col lg={6}>
         <div id="second-bar">
-          <Button>HOME</Button>
-          <DropdownButton id="dropdown-basic-button" title="MEN">
+          <button className="topbar-button">HOME</button>
+          <DropdownButton
+            id="dropdown-basic-button"
+            title="MEN"
+            className="topbar-dropbutton"
+          >
             <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
           </DropdownButton>
-          <DropdownButton id="dropdown-basic-button" title="WOMEN">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title="WOMEN"
+            className="topbar-dropbutton"
+          >
             <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
           </DropdownButton>
-          <Button>LOOKBOOK</Button>
-          <Button>ABOUT</Button>
-          <Button>BLOG</Button>
+          <button className="topbar-button">LOOKBOOK</button>
+          <button className="topbar-button">ABOUT</button>
+          <button className="topbar-button">BLOG</button>
         </div>
       </Col>
-      <Col lg={2}>
-        <img
-          alt="icon"
-          src="https://www.flaticon.com/svg/static/icons/svg/833/833300.svg"
-          style={{ width: "20px", height: "20px" }}
-        />{" "}
-        |
-        <img
-          alt="icon"
-          src="https://www.flaticon.com/svg/static/icons/svg/93/93642.svg"
-          style={{ width: "20px", height: "20px" }}
-        />
+      <Col lg={3}>
+        <div id="search-icon">
+          <img
+            alt="icon"
+            src="https://www.flaticon.com/svg/static/icons/svg/833/833300.svg"
+            className="topbarone-icon"
+          />
+          <span id="pipe">|</span>
+          <img
+            alt="icon"
+            src="https://www.flaticon.com/svg/static/icons/svg/93/93642.svg"
+            className="topbarone-icon"
+          />
+        </div>
       </Col>
     </Row>
   );

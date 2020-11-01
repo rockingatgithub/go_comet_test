@@ -92,7 +92,7 @@ class MainSection extends Component {
     if (productSize === "Select size") {
       toast("Select a size of item", {
         position: "top-right",
-        type: "info",
+        type: "error",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -105,7 +105,7 @@ class MainSection extends Component {
     if (productColor === "Select color") {
       toast("Select color of item", {
         position: "top-right",
-        type: "info",
+        type: "error",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -118,7 +118,7 @@ class MainSection extends Component {
     if (productQty === "") {
       toast("Select quantity of item", {
         position: "top-right",
-        type: "info",
+        type: "warning",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -141,7 +141,7 @@ class MainSection extends Component {
       () => {
         toast("Item added to cart", {
           position: "top-right",
-          type: "info",
+          type: "success",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -169,7 +169,7 @@ class MainSection extends Component {
   render() {
     const { imagearray, curimage } = this.state;
     return (
-      <Container fluid>
+      <Container>
         <Row>
           <Modal
             show={this.state.showCart}
@@ -193,86 +193,98 @@ class MainSection extends Component {
             </Modal.Body>
           </Modal>
           <Col lg={4}>
-            <ReactFlagsSelect
-              defaultCountry="US"
-              searchable={true}
-              onSelect={this.onSelectFlag}
-              showSelectedLabel={false}
-              className="my-flag"
-            />
+            <div id="flag-column">
+              <ReactFlagsSelect
+                defaultCountry="US"
+                searchable={true}
+                onSelect={this.onSelectFlag}
+                showSelectedLabel={false}
+                className="my-flag"
+              />
+            </div>
           </Col>
-          <Col lg={4}>BONFIRE</Col>
+          <Col lg={4}>
+            <div id="main-heading">BONFIRE</div>
+          </Col>
           <Col lg={4}>
             {" "}
-            <Button variant="secondary" onClick={this.showCartList}>
-              Cart <Badge variant="light">{this.state.cart.length}</Badge>
-            </Button>{" "}
+            <div id="cart-column">
+              <button onClick={this.showCartList} id="cart-button">
+                Cart <Badge variant="light">{this.state.cart.length}</Badge>
+              </button>
+            </div>{" "}
           </Col>
         </Row>
         <TopBar1 />
-        <Row>
+        <Row id="row-three">
           <Col lg={6}>
-            <div>
-              <img
-                alt="maindisplay"
-                src={imagearray[curimage]}
-                style={{ height: "400px", width: "300px" }}
-              />
-            </div>
-            <div>
-              <img
-                alt="thumbnail"
-                src={img1}
-                onClick={() => this.changeImageHandler(0)}
-                className={curimage === 0 && "thumbnail-image"}
-                style={{ height: "100px", width: "80px" }}
-              />
-              <img
-                alt="thumbnail"
-                src={img2}
-                onClick={() => this.changeImageHandler(1)}
-                className={curimage === 1 && "thumbnail-image"}
-                style={{ height: "100px", width: "80px" }}
-              />
-              <img
-                alt="thumbnail"
-                src={img3}
-                onClick={() => this.changeImageHandler(2)}
-                className={curimage === 2 && "thumbnail-image"}
-                style={{ height: "100px", width: "80px" }}
-              />
-              <img
-                alt="thumbnail"
-                src={img4}
-                onClick={() => this.changeImageHandler(3)}
-                className={curimage === 3 && "thumbnail-image"}
-                style={{ height: "100px", width: "80px" }}
-              />
+            <div id="image-container">
+              <div>
+                <img
+                  alt="maindisplay"
+                  src={imagearray[curimage]}
+                  style={{ height: "400px", width: "300px" }}
+                />
+              </div>
+              <div id="thumbnail-container">
+                <img
+                  alt="thumbnail"
+                  src={img1}
+                  onClick={() => this.changeImageHandler(0)}
+                  className={curimage === 0 && "thumbnail-image"}
+                  style={{ height: "100px", width: "80px" }}
+                />
+                <img
+                  alt="thumbnail"
+                  src={img2}
+                  onClick={() => this.changeImageHandler(1)}
+                  className={curimage === 1 && "thumbnail-image"}
+                  style={{ height: "100px", width: "80px" }}
+                />
+                <img
+                  alt="thumbnail"
+                  src={img3}
+                  onClick={() => this.changeImageHandler(2)}
+                  className={curimage === 2 && "thumbnail-image"}
+                  style={{ height: "100px", width: "80px" }}
+                />
+                <img
+                  alt="thumbnail"
+                  src={img4}
+                  onClick={() => this.changeImageHandler(3)}
+                  className={curimage === 3 && "thumbnail-image"}
+                  style={{ height: "100px", width: "80px" }}
+                />
+              </div>
             </div>
           </Col>
           <Col lg={6}>
             <div>
-              <span>Back to Women</span>
+              <span> &lt; Back to Women</span>
             </div>
-            <h3>The Atelier Tailored Coat</h3>
-            <div>
-              <img src={stars} /> <span>3 Review(s)</span> |{" "}
-              <span>ADD A REVIEW</span>
+            <h3 id="item-name">The Atelier Tailored Coat</h3>
+            <div id="star-box">
+              <img src={stars} /> <span>3 Review(s)</span> &nbsp; | &nbsp;
+              <span id="review-box">ADD A REVIEW</span>
             </div>
-            <div>$499.00</div>
-            <div>
-              <span>Availability:</span>
+            <div id="item-price">$499.00</div>
+            <div id="item-info">
+              <span className="bold-texts">Availability:</span>
               <span>In stock</span>
             </div>
-            <div>#46657</div>
+
             <div>
-              Tags: <span>Fashion, Hood, Classic</span>
+              <span className="bold-texts">Product Code:</span>
+              <span>#46657</span>
+            </div>
+            <div id="last-info">
+              <span className="bold-texts">Tags:</span> <span>Fashion, Hood, Classic</span>
             </div>
             <div>
               By tailored, or constructed, jacket we mean the frame with which
-              the jacket is put together. ... In a tailored jacket adhesives are
-              not used, but the front parts of the garment are strengthened by
-              using horse hair and with the use of a so-called canvas.
+              the jacket is put together. In a tailored jacket adhesives are not
+              used, but the front parts of the garment are strengthened by using
+              horse hair and with the use of a so-called canvas.
             </div>
             <ul>
               <li>Dark blue suit for a tone-on-tone lock.</li>
@@ -331,14 +343,16 @@ class MainSection extends Component {
               </Form.Row>
             </Form>
             <div>
-              <Button value="reset" onClick={this.resetHandler}>
+              <Button variant="light" value="reset" onClick={this.resetHandler}>
                 {" "}
                 Clear Selection{" "}
               </Button>
             </div>
             <div>
-              <Button onClick={this.addCartHandler}>ADD TO CART</Button>
-              <Button>♡ ADD TO WISHLIST</Button>
+              <Button variant="light" onClick={this.addCartHandler}>
+                ADD TO CART
+              </Button>
+              <Button variant="light">♡ ADD TO WISHLIST</Button>
             </div>
             <div>
               <span>SHARE THIS </span>{" "}
