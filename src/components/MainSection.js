@@ -184,6 +184,7 @@ class MainSection extends Component {
                   <ListGroup.Item>
                     <div>
                       <img
+                        alt="itempics"
                         src={img1}
                         style={{ height: "40px", width: "25px" }}
                         className="product-image"
@@ -296,7 +297,8 @@ class MainSection extends Component {
             </div>
             <h3 id="item-name">The Atelier Tailored Coat</h3>
             <div id="star-box">
-              <img src={stars} /> <span>3 Review(s)</span> &nbsp; | &nbsp;
+              <img src={stars} alt="itempics" /> <span>3 Review(s)</span> &nbsp;
+              | &nbsp;
               <span id="review-box">ADD A REVIEW</span>
             </div>
             <div id="item-price">$499.00</div>
@@ -413,7 +415,8 @@ class MainSection extends Component {
               </Button>
             </div>
             <div id="share-block">
-              <span>SHARE THIS </span> <img src={share} id="share-image" />
+              <span>SHARE THIS </span>{" "}
+              <img src={share} id="share-image" alt="itempics" />
             </div>
           </Col>
         </Row>
