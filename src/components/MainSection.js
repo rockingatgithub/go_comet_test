@@ -11,9 +11,7 @@ import {
 } from "react-bootstrap";
 import ReactFlagsSelect from "react-flags-select";
 import { toast } from "react-toastify";
-import "react-flags-select/css/react-flags-select.css";
 
-import "react-toastify/dist/ReactToastify.css";
 import TopBar1 from "./TopBar1";
 import img1 from "../images/image1.jpeg";
 import img2 from "../images/image2.jpeg";
@@ -180,19 +178,38 @@ class MainSection extends Component {
               <Modal.Title>Cart List</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+              {this.state.cart.length === 0 && <span>No item in Cart!</span>}
               <ListGroup>
                 {this.state.cart.map((product) => (
                   <ListGroup.Item>
-                    <span className="product-name">{product.name}</span>
-                    <span className="product-name">{product.size}</span>
-                    <span className="product-name">{product.color}</span>
-                    <span className="product-name">{product.qty}</span>
+                    <div>
+                      <img
+                        src={img1}
+                        style={{ height: "40px", width: "25px" }}
+                        className="product-image"
+                      />
+                      <span className="product-name">{product.name}</span>
+                    </div>
+                    <div>
+                      <span className="product-size">
+                        <span className="tag-bold">Size:</span>
+                        {product.size}
+                      </span>
+                      <span className="product-color">
+                        <span className="tag-bold">Color:</span>
+                        {product.color}
+                      </span>
+                      <span className="product-qty">
+                        <span className="tag-bold">Qty:</span>
+                        {product.qty}
+                      </span>
+                    </div>
                   </ListGroup.Item>
                 ))}
               </ListGroup>
             </Modal.Body>
           </Modal>
-          <Col lg={4}>
+          <Col lg={4} sm={4} xs={4}>
             <div id="flag-column">
               <ReactFlagsSelect
                 defaultCountry="US"
@@ -203,10 +220,10 @@ class MainSection extends Component {
               />
             </div>
           </Col>
-          <Col lg={4}>
+          <Col lg={4} sm={4} xs={4}>
             <div id="main-heading">BONFIRE</div>
           </Col>
-          <Col lg={4}>
+          <Col lg={4} sm={4} xs={4}>
             {" "}
             <div id="cart-column">
               <button onClick={this.showCartList} id="cart-button">
@@ -223,7 +240,7 @@ class MainSection extends Component {
                 <img
                   alt="maindisplay"
                   src={imagearray[curimage]}
-                  style={{ height: "400px", width: "300px" }}
+                  id="maindisplay"
                 />
               </div>
               <div id="thumbnail-container">
@@ -231,36 +248,51 @@ class MainSection extends Component {
                   alt="thumbnail"
                   src={img1}
                   onClick={() => this.changeImageHandler(0)}
-                  className={curimage === 0 && "thumbnail-image"}
-                  style={{ height: "100px", width: "80px" }}
+                  className={
+                    curimage === 0
+                      ? "thumbnail-image thumbnail-item"
+                      : "thumbnail-item"
+                  }
                 />
                 <img
                   alt="thumbnail"
                   src={img2}
                   onClick={() => this.changeImageHandler(1)}
-                  className={curimage === 1 && "thumbnail-image"}
-                  style={{ height: "100px", width: "80px" }}
+                  className={
+                    curimage === 1
+                      ? "thumbnail-image thumbnail-item"
+                      : "thumbnail-item"
+                  }
                 />
                 <img
                   alt="thumbnail"
                   src={img3}
                   onClick={() => this.changeImageHandler(2)}
-                  className={curimage === 2 && "thumbnail-image"}
-                  style={{ height: "100px", width: "80px" }}
+                  className={
+                    curimage === 2
+                      ? "thumbnail-image thumbnail-item"
+                      : "thumbnail-item"
+                  }
                 />
                 <img
                   alt="thumbnail"
                   src={img4}
                   onClick={() => this.changeImageHandler(3)}
-                  className={curimage === 3 && "thumbnail-image"}
-                  style={{ height: "100px", width: "80px" }}
+                  className={
+                    curimage === 3
+                      ? "thumbnail-image thumbnail-item"
+                      : "thumbnail-item"
+                  }
                 />
               </div>
             </div>
           </Col>
           <Col lg={6}>
             <div>
-              <span> &lt; Back to Women</span>
+              <span>
+                {" "}
+                &lt; Back to <span className="blue-text">Women</span>{" "}
+              </span>
             </div>
             <h3 id="item-name">The Atelier Tailored Coat</h3>
             <div id="star-box">
@@ -270,15 +302,16 @@ class MainSection extends Component {
             <div id="item-price">$499.00</div>
             <div id="item-info">
               <span className="bold-texts">Availability:</span>
-              <span>In stock</span>
+              <span className="blue-text">In stock</span>
             </div>
 
             <div>
               <span className="bold-texts">Product Code:</span>
-              <span>#46657</span>
+              <span className="blue-text">#46657</span>
             </div>
             <div id="last-info">
-              <span className="bold-texts">Tags:</span> <span>Fashion, Hood, Classic</span>
+              <span className="bold-texts">Tags:</span>{" "}
+              <span className="blue-text">Fashion, Hood, Classic</span>
             </div>
             <div>
               By tailored, or constructed, jacket we mean the frame with which
@@ -286,17 +319,43 @@ class MainSection extends Component {
               used, but the front parts of the garment are strengthened by using
               horse hair and with the use of a so-called canvas.
             </div>
-            <ul>
+            <ul id="features-list">
               <li>Dark blue suit for a tone-on-tone lock.</li>
               <li>Regular Fit.</li>
               <li>100% Cotton.</li>
               <li>Free shipping with 4 days delivery.</li>
             </ul>
 
-            <Form>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>Size:</Form.Label>
+            <Form id="main-form">
+              <Form.Row id="main-form-row">
+                <Form.Group
+                  as={Col}
+                  controlId="formGridState"
+                  className="formDropdown"
+                >
+                  <Form.Label className="form-labels">COLOR</Form.Label>
+                  <Form.Control
+                    as="select"
+                    ref={this.colorRef}
+                    onChange={this.colorHandler}
+                    value={this.state.productColor}
+                  >
+                    <option>Select color</option>
+                    <option>Black</option>
+                    <option>Blue</option>
+                    <option>Grey</option>
+                    <option>Brown</option>
+                  </Form.Control>
+                </Form.Group>
+
+                <Form.Group
+                  as={Col}
+                  controlId="formGridDropdown"
+                  className="formDropdown"
+                >
+                  <Form.Label className="form-labels" id="dropdownLabel">
+                    SIZE
+                  </Form.Label>
                   <Form.Control
                     as="select"
                     ref={this.sizeRef}
@@ -312,24 +371,10 @@ class MainSection extends Component {
                   </Form.Control>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>Color:</Form.Label>
-                  <Form.Control
-                    as="select"
-                    ref={this.colorRef}
-                    onChange={this.colorHandler}
-                    value={this.state.productColor}
-                  >
-                    <option>Select color</option>
-                    <option>Black</option>
-                    <option>Blue</option>
-                    <option>Grey</option>
-                    <option>Brown</option>
-                  </Form.Control>
-                </Form.Group>
-
                 <Form.Group as={Col} controlId="formGridZip">
-                  <Form.Label>Qty:</Form.Label>
+                  <Form.Label className="form-labels" id="formGridLabel">
+                    QTY
+                  </Form.Label>
                   <Form.Control
                     as="input"
                     type="number"
@@ -342,21 +387,33 @@ class MainSection extends Component {
                 </Form.Group>
               </Form.Row>
             </Form>
-            <div>
-              <Button variant="light" value="reset" onClick={this.resetHandler}>
+            <div id="reset-button-container">
+              <Button
+                id="reset-button"
+                variant="light"
+                value="reset"
+                onClick={this.resetHandler}
+              >
                 {" "}
-                Clear Selection{" "}
+                CLEAR SELECTION{" "}
               </Button>
             </div>
-            <div>
-              <Button variant="light" onClick={this.addCartHandler}>
+
+            <div id="form-actions">
+              <Button
+                variant="light"
+                onClick={this.addCartHandler}
+                id="add-to-cart-button"
+              >
                 ADD TO CART
               </Button>
-              <Button variant="light">♡ ADD TO WISHLIST</Button>
+              <Button variant="light" id="add-to-wishlist">
+                <span id="heart-text"> ♡ </span>{" "}
+                <span id="wishlist-text"> ADD TO WISHLIST</span>
+              </Button>
             </div>
-            <div>
-              <span>SHARE THIS </span>{" "}
-              <img src={share} style={{ height: "20px", width: "300px" }} />
+            <div id="share-block">
+              <span>SHARE THIS </span> <img src={share} id="share-image" />
             </div>
           </Col>
         </Row>

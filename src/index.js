@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-flags-select/css/react-flags-select.css";
+import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import App from "./components/App";
 

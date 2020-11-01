@@ -4,7 +4,7 @@ import { Button, Row, Col, Dropdown, DropdownButton } from "react-bootstrap";
 function TopBar1(props) {
   return (
     <Row id="second-row">
-      <Col lg={3}>
+      <Col lg={3} sm={2} xs={1}>
         <div>
           <img
             alt="icon"
@@ -13,7 +13,7 @@ function TopBar1(props) {
           />
         </div>
       </Col>
-      <Col lg={6}>
+      <Col lg={6} sm={8} xs={11}>
         <div id="second-bar">
           <button className="topbar-button">HOME</button>
           <DropdownButton
@@ -39,7 +39,7 @@ function TopBar1(props) {
           <button className="topbar-button">BLOG</button>
         </div>
       </Col>
-      <Col lg={3}>
+      <Col lg={3} sm={2} xs={0}>
         <div id="search-icon">
           <img
             alt="icon"
